@@ -1,9 +1,7 @@
 package com.chanuka.cash_flow.service;
 
-import com.chanuka.cash_flow.dto.ExpenseDTO;
 import com.chanuka.cash_flow.dto.IncomeDTO;
 import com.chanuka.cash_flow.entity.CategoryEntity;
-import com.chanuka.cash_flow.entity.ExpenseEntity;
 import com.chanuka.cash_flow.entity.IncomeEntity;
 import com.chanuka.cash_flow.entity.ProfileEntity;
 import com.chanuka.cash_flow.exception.CategoryNotFoundException;
