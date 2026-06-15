@@ -12,6 +12,7 @@ import com.chanuka.cash_flow.repository.IncomeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -52,6 +53,20 @@ public class IncomeService {
             throw new RuntimeException("Unauthorized request");
         }
         incomeRepository.delete(incomeEntity);
+    }
+
+    // get latest 5 incomes for current user
+    public List<IncomeDTO> getLatest5IncomesForCurrentUser() {
+        ProfileEntity profile = profileService.getCurrentProfile();
+        List<IncomeEntity> list = incomeRepository.findTop5ByProfileIdOrderByDateDesc(profile.getId());
+        return list.stream().map(this::toDTO).toList();
+    }
+
+    // get total incomes for current user
+    public BigDecimal getTotalIncomesForCurrentUser() {
+        ProfileEntity profile = profileService.getCurrentProfile();
+        BigDecimal totalIncome = incomeRepository.findTotalByProfileId(profile.getId());
+        return totalIncome != null ? totalIncome : BigDecimal.ZERO;
     }
 
     // helper method

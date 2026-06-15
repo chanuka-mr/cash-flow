@@ -1,6 +1,5 @@
 package com.chanuka.cash_flow.repository;
 
-import com.chanuka.cash_flow.entity.ExpenseEntity;
 import com.chanuka.cash_flow.entity.IncomeEntity;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,7 +20,7 @@ public interface IncomeRepository extends JpaRepository<IncomeEntity, Long> {
 
     //
     @Query("SELECT COALESCE(SUM(e.amount), 0) FROM IncomeEntity e WHERE e.profile.id = :profileId")
-    BigDecimal findTotalExpenseByProfileId(@Param("profileId") Long profileId);
+    BigDecimal findTotalByProfileId(@Param("profileId") Long profileId);
 
     // SELECT * FROM tbl_incomes WHERE profile_id = ?1 AND date BETWEEN ?2 AND ?3 AND name LIKE %?4%
     List<IncomeEntity> findByProfileIdAndDateBetweenAndNameContainingIgnoreCase(
