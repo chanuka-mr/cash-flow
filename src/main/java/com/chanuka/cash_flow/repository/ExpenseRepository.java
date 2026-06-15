@@ -20,7 +20,7 @@ public interface ExpenseRepository extends JpaRepository<ExpenseEntity, Long> {
 
     //
     @Query("SELECT COALESCE(SUM(e.amount), 0) FROM ExpenseEntity e WHERE e.profile.id = :profileId")
-    BigDecimal findTotalExpenseByProfileId(@Param("profileId") Long profileId);
+    BigDecimal findTotalByProfileId(@Param("profileId") Long profileId);
 
     // SELECT * FROM tbl_expenses WHERE profile_id = ?1 AND date BETWEEN ?2 AND ?3 AND name LIKE %?4%
     List<ExpenseEntity> findByProfileIdAndDateBetweenAndNameContainingIgnoreCase(
